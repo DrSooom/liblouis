@@ -43,6 +43,7 @@
 # Updated June 2009 by Lars Bjørndal <lars@lamasti.net>
 # Updated April 2015 by Jostein Austvik Jacobsen <jostein@nlb.com> and Ammar Usama <ammar.usama@nlb.no>
 
+include no-no.dis
 include no-no-chardefs6.uti
 include litdigits6Dots.uti
 include braille-patterns.cti # unicode braille
@@ -53,7 +54,7 @@ lowword - 36-36              # make double when hyphen surrounded by white space
 numsign 3456
 capsletter 6                    # single capital letter indicator
 begcapsword 6-6                  # a block of consecutive capital letters indicator
-endcapsword 56                   # TODO
+noback endcapsword 56                   # TODO
 
 emphclass italic
 emphclass underline
@@ -63,7 +64,7 @@ begemph italic 23
 begemph bold 6-3
 begemph underline 456
 
-endemph italic 56
+noback endemph italic 56
 endemph bold 6-3
 endemph underline 456
 
@@ -98,6 +99,8 @@ noback always ;\s; 0
 begcomp 126
 endcomp 345
 
+# We have to redefine the letter æ here to prevent back translation of it to result in a space
+uplow \x00C6\x00E6 345       # æ x00C6 / 00E6
 # URLs
 compbrl ://
 compbrl www.
@@ -136,4 +139,3 @@ compbrl .zip
 # URL / email address.
 noback pass2 @126-246-3 @126
 noback pass2 @135-2-345 @345
-
